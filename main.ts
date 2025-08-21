@@ -17,6 +17,8 @@ let tstart = 0
 let xWert = 0
 let xSchieber = 0
 xSchieber = 2
+let score = 0
+let speed = 800
 basic.forever(function () {
     led.plot(xSchieber, 4)
     xWert = randint(0, 4)
@@ -24,8 +26,16 @@ basic.forever(function () {
     tfaellt = 0
     while (tfaellt < 5) {
         led.plot(xWert, tfaellt)
-        basic.pause(500)
+        basic.pause(speed)
         led.unplot(xWert, tfaellt)
         tfaellt = tfaellt + 1
+    }
+    if (xSchieber == xWert) {
+        score = score + 1
+        speed = speed * 0.9
+    } else {
+        basic.showNumber(score)
+        basic.pause(5000)
+        basic.pause(5000)
     }
 })
